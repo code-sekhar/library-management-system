@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,8 @@ route::post('/register', [AuthController::class, 'register']);
 route::post('', [AuthController::class, 'login']);
 route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 //route::middleware('auth:api')->post('/logout', [AuthController::class, 'logout']);
+//auth route
+route::middleware('auth:sanctum')->group(function () {
+    Route::get('/category', [CategoryController::class, 'index']);
+    Route::post('/category', [CategoryController::class, 'store']);
+});
