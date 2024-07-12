@@ -28,5 +28,9 @@ route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanc
 //auth route
 route::middleware('auth:sanctum')->group(function () {
     Route::get('/category', [CategoryController::class, 'index']);
+    Route::get('/category/{id}', [CategoryController::class, 'show']);
     Route::post('/category', [CategoryController::class, 'store']);
+    Route::get('/category/active', [CategoryController::class, 'active']);
+    Route::get('/category/inactive', [CategoryController::class, 'inactive']);
+    Route::put('/category/{id}/{status}', [CategoryController::class, 'updateStatus']);
 });
